@@ -1,16 +1,16 @@
 package br.com.blog.sunioweb.model;
 
-import br.com.blog.sunioweb.util.EnumRoleUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,53 +19,97 @@ import java.util.List;
 @Setter
 public class User implements UserDetails {
 
-     @Id
-     private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String username;
 
-     private String name;
+    @JsonIgnore
+    private String password;
 
-     @JsonIgnore
-     private String login;
-     @JsonIgnore
-     private String password;
+    private boolean accountNonExpired;
 
-     private EnumRoleUser role;
+    private boolean accountNonLocked;
 
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Role> roles = new ArrayList<>();
+
+    public User () {}
+
+    public User (String username)
+    {
+        this.username = username;
+    }
+
+    //cria usuario
+    public User (String username, String password, Role role) {
+        this.username = username;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
+        this.roles.add(role);
+    }
+
+    public String encrypt(String password)
+    {
+        this.password = new BCryptPasswordEncoder().encode(password);
+        return this.password;
+    }
+
+    public boolean addRole(Role role)
+    {
+        return this.roles.add(role);
+    }
+
+    public boolean addRoles(List<Role> roles)
+    {
+        return this.roles.addAll(roles);
+    }
+
+    public boolean removeRole(Role role)
+    {
+        return this.roles.remove(role);
+    }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities()
-    {
-        if(this.role == EnumRoleUser.ADMIN) return  List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return  List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return login;
+        return this.username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }
