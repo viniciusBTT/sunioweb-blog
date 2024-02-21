@@ -17,17 +17,9 @@ public class AuthController {
     @GetMapping
     public String auth()
     {
-        try {
-            System.out.println("entrou");
-//            Role role = new Role("ROLE_ADMIN");
-//            User user = new User("vini","123",role);
-//            //user = userService.save(user);
-//            System.out.println(user.toString());
-        }catch (Exception e){
-            System.out.println(e);
-        }
 
-        return "auth/login";
+
+        return "/login";
     }
 
 }

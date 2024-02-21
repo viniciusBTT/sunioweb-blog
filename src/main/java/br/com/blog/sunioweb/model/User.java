@@ -18,9 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 public class User implements UserDetails {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String username;
 
     @JsonIgnore

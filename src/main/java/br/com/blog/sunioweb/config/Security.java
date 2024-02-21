@@ -27,14 +27,15 @@ public class Security {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/home").permitAll()
                         .requestMatchers("/assets/**").permitAll()
-                        .requestMatchers("/auth**/").permitAll()
+                        .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .formLogin((formLogin) ->
                         formLogin
-                                .loginPage("/auth")
+                                .loginPage("/login")
                 )
                 .logout((logout) ->
                         logout.logoutUrl("/logout")
@@ -42,17 +43,6 @@ public class Security {
                 ).csrf((csrf) -> csrf.disable());
 
         return http.build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
     }
 
     @Bean

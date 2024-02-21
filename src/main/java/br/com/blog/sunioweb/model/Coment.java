@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Coment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String PublisherName;
