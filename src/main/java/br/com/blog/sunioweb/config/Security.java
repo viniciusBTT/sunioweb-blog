@@ -28,7 +28,7 @@ public class Security {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/home").permitAll()
-                        .requestMatchers("/assets/**").permitAll()
+                        .requestMatchers("/static/assets/**").permitAll()
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
                 )
