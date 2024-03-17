@@ -1,102 +1,49 @@
-<!DOCTYPE html>
-<html lang="Pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="/assets/vendor/datatable/datatable.css" rel="stylesheet" >
-    <link href="/assets/vendor/bootstrap5-2/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="/assets/css/style.css" rel="stylesheet" >
+<!doctype html>
+<html lang="pt-br">
+<th:replace th:replace="~{fragments/head}"></th:replace>
 
-</head>
-<body>
-<header id="header" >
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" >
-                <img src="/assets/imagens/logo_blog.png" width="250px">
-            </a>
-        </div>
-    </nav>
-</header>
+<body class="sidebar-mini sidebar-collapse">
+    <div class="wrapper">
 
-    <aside id="sidebar">
-        <div class="d-flex flex-column flex-shrink-0 bg-light" >
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                <li class="nav-item">
-                    <a href="/home" class="nav-link active py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Posts">
-                        <i class="fa-solid fa-newspaper"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
-                        <i class="fa-solid fa-user"></i>                    </a>
-                </li>
 
-            </ul>
-            <div class="dropdown border-top">
-                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3" style="">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-    </aside>
-<main id="content" >
-    <table class="table" id="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
-</main>
+        <th:replace th:replace="~{fragments/sidebar}"></th:replace>
+        <main class="content-wrapper">
+            <h1>Olá</h1>
 
-<script src="/assets/vendor/bootstrap5-2/bootstrap.min.js"></script>
-<script src="/assets/vendor/sweetalert2/sweetalert2.all.js"></script>
-<script src="/assets/vendor/datatable/jquery3.6.0.min.js"></script>
-<script src="/assets/vendor/datatable/datatable.js"></script>
+            <table class="table" id="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
 
-<script>
-    let success = "fse"
-    let error = "[[${error}]]"
-</script>
-<script src="/assets/vendor/datatable/tableTrigger.js"></script>
-<script src="https://kit.fontawesome.com/8e39ba9689.js" crossorigin="anonymous"></script>
+                </tbody>
+            </table>
+        </main>
+        <th:replace th:replace="~{fragments/footer}"></th:replace>
+
+    </div>
+
+    <th:replace th:replace="~{fragments/scripts}"></th:replace>
+    <script>
+
+    </script>
 
 </body>
 </html>
