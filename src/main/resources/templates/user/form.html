@@ -1,0 +1,21 @@
+
+    <form th:action="@{/users/save}" th:object="${user}" th:method="${user.username == null} ? 'POST' : 'PATCH'">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nome</label>
+            <input type="text" class="form-control"  th:field="*{username}">
+        </div>
+        <div class="mb-3" th:if="${user.username == null}">
+            <label for="password" class="form-label">Senha</label>
+            <input type="text" class="form-control"  th:field="*{password}">
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Regra de usuário</label>
+            <select class="form-select" aria-label="Default select example" th:field="*{roles}">
+                <option th:selected="*{username}" value="">Clique para selecionar</option>
+                <option value="ROLE_ADMIN">Administrador</option>
+                <option value="ROLE_COMUM">Usuário</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="button" onclick="swal.close()" class="btn btn-secondary">Cancelar</button>
+    </form>

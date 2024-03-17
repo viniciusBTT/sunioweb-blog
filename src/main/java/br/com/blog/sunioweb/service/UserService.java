@@ -1,5 +1,6 @@
 package br.com.blog.sunioweb.service;
 
+import br.com.blog.sunioweb.dto.UserPostDTO;
 import br.com.blog.sunioweb.model.Role;
 import br.com.blog.sunioweb.model.User;
 import br.com.blog.sunioweb.repository.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
@@ -18,27 +21,21 @@ public class UserService implements UserDetailsService {
 
 
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-//    {
-//        User user = repository.findById(1).orElse(null);
-//
-//        if(user != null)
-//        {
-//            if(user.getAuthorities().isEmpty())
-//            {
-//                user.addRole(new Role("ROLE_COMUM"));
-//            }
-//        }
-//
-//        if(user == null) throw new UsernameNotFoundException("Usuário ou senha inválidos");
-//
-//        return user;
-//    }
-
-    public User save(User user)
+    public List<User> findAll(){return repository.findAll();}
+    public User save(UserPostDTO dto)
     {
-        return repository.save(user);
+       User user = repository.save(new User(dto.username(), dto.password(), new Role(dto.roles())));
+
+        return user;
+    }
+
+    public User verifyByUser(String username){
+
+        return repository.findById(username).orElse(null);
+    }
+
+    public User findById(String username){
+        return repository.findById(username).orElse(null);
     }
 
     @Override
