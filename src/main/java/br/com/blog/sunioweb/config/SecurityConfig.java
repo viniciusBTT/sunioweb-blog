@@ -20,7 +20,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class Security {
+public class SecurityConfig {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception
+    {
+        builder.userDetailsService(userService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
