@@ -19,7 +19,12 @@ import java.util.List;
 @Setter
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     private String username;
+
+    private String fullName;
 
     @JsonIgnore
     private String password;
@@ -45,6 +50,17 @@ public class User implements UserDetails {
 
     //cria usuario
     public User (String username, String password, Role role) {
+        this.username = username;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
+        this.roles.add(role);
+    }
+
+    public User (Integer id, String username, String password, Role role) {
+        this.id = id;
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.accountNonExpired = true;

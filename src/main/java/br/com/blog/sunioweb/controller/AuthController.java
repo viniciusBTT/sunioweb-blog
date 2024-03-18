@@ -19,7 +19,6 @@ public class AuthController {
     @GetMapping
     public String auth(HttpServletRequest request)
     {
-        System.out.println("daiowdawkdnjawidjaidjaiodjaw");
         return "/auth/login";
     }
 

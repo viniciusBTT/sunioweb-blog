@@ -10,6 +10,6 @@ public class IndexController {
 
     @GetMapping
     public String index(){
-        return "index/index";
+        return "/index/index";
     }
 }

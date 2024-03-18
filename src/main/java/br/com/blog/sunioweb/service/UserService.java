@@ -41,7 +41,14 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        User user = this.repository.findById(username).orElse(null);
+        System.out.println("Entrouuuuuuuuuuuuu");
+        var user = new User();
+        try{
+            user = this.repository.findByUsername(username);
+
+        }catch (Exception e){
+            System.out.println("userService:48" + e.getMessage());
+        }
 
         if(user != null)
         {
@@ -49,6 +56,7 @@ public class UserService implements UserDetailsService {
             {
                 user.addRole(new Role("ROLE_COMUM"));
             }
+
         }
 
         if(user == null) throw new UsernameNotFoundException("Usuário ou senha inválidos");
