@@ -15,4 +15,12 @@ public class PostService {
 
     public List<Post> findAll(){return repository.findAll();}
 
+    public Post findById(Integer id){return  repository.findById(id).orElse(null);}
+
+    public Post save (Post post){
+
+
+        return repository.save(post);
+    }
+
 }

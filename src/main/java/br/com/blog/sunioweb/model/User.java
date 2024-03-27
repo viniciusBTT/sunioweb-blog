@@ -2,6 +2,7 @@ package br.com.blog.sunioweb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,9 +48,12 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    //cria usuario
-    public User (String username, String password, Role role) {
+
+
+    public User (Integer id, String username, String fullName, String password, Role role) {
+        this.id = id;
         this.username = username;
+        this.fullName = fullName;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.accountNonExpired = true;
         this.accountNonLocked = true;
@@ -59,9 +62,9 @@ public class User implements UserDetails {
         this.roles.add(role);
     }
 
-    public User (Integer id, String username, String password, Role role) {
-        this.id = id;
+    public User ( String username,String fullName, String password, Role role) {
         this.username = username;
+        this.fullName = fullName;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.accountNonExpired = true;
         this.accountNonLocked = true;
@@ -125,5 +128,20 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                ", accountNonExpired=" + accountNonExpired +
+                ", accountNonLocked=" + accountNonLocked +
+                ", credentialsNonExpired=" + credentialsNonExpired +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
     }
 }

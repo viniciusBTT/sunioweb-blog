@@ -22,26 +22,26 @@ public class UserService implements UserDetailsService {
 
 
     public List<User> findAll(){return repository.findAll();}
-    public User save(UserPostDTO dto)
-    {
-       User user = repository.save(new User(dto.username(), dto.password(), new Role(dto.roles())));
+    public User save(User user){
+       user = repository.save(user);
 
         return user;
     }
 
-    public User verifyByUser(String username){
-
-        return repository.findById(username).orElse(null);
+    public User verifyByUsername(String username){
+        return repository.findByUsername(username);
     }
 
-    public User findById(String username){
-        return repository.findById(username).orElse(null);
+    public User findById(Integer id){
+        User user =  repository.findById(id).orElse(new User());
+        return user;
     }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        System.out.println("Entrouuuuuuuuuuuuu");
         var user = new User();
         try{
             user = this.repository.findByUsername(username);

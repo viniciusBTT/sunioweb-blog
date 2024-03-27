@@ -44,11 +44,11 @@
                         <td th:text="${user.username}" ></td>
                         <td th:switch="${user.roles[0].name}" >
                             <span th:case="ROLE_ADMIN">Administrador</span>
-                            <span th:case="ROLE_USER">Usuário</span>
+                            <span th:case="ROLE_COMUM">Usuário</span>
                         </td>
                         <td class="text-center border-left">
                             <button type="button" class="btn btn-link"
-                                    th:id="${user.username}" onclick="handleBtnUserModal(this.id)">
+                                    th:id="${user.id}" onclick="handleBtnUserModal(this.id)">
                                 <i class="fa-solid fa-pen-to-square"></i>
 
                             </button>
@@ -81,7 +81,7 @@
 <script>
     let success = "[[${success}]]";
     let error = "[[${error}]]";
-    let sideBarActive = 3;
+    let sideBarActive = 4;
 </script>
 <!-- triggers to DataTable, alerts e  -->
 <script src="/assets/js/globalJs.js"></script>
