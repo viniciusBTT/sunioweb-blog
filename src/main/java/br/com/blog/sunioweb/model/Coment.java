@@ -1,6 +1,7 @@
 package br.com.blog.sunioweb.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class Coment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

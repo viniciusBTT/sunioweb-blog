@@ -1,6 +1,7 @@
 package br.com.blog.sunioweb.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,9 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +37,8 @@ public class Post {
     private String content;
 
 
-    @OneToOne
-    private Subject subject;
+    @ManyToMany
+    private List<Subject> subjects;
 
 
 

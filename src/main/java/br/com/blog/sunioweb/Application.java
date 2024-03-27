@@ -29,7 +29,7 @@ public class Application {
 		RoleRepository.save(roleAdmin);
 		RoleRepository.save(roleRoot);
 
-		userService.save(new User(1,"admin", "123", new Role("ROLE_ADMIN")));
+		userService.save(new User(1,"admin", "administrador", "123", new Role("ROLE_ADMIN")));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

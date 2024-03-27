@@ -1,21 +1,34 @@
 
     <form th:action="@{/users/save}" th:object="${user}" th:method="${user.username == null} ? 'POST' : 'PATCH'">
+        <div class="mb-3 ">
+            <label for="id" class="form-label">Nome</label>
+            <input type="text" class="form-control"  th:field="*{id}" readonly>
+        </div>
         <div class="mb-3">
-            <label for="username" class="form-label">Nome</label>
+            <label for="username" class="form-label">Nome de usuário</label>
             <input type="text" class="form-control"  th:field="*{username}">
         </div>
-        <div class="mb-3" th:if="${user.username == null}">
+        <div class="mb-3" id="containerInputPassword" th:if="${user.username == null}">
             <label for="password" class="form-label">Senha</label>
             <input type="text" class="form-control"  th:field="*{password}">
         </div>
+        <div class="mb-3 d-none" id="containerInputPassword" th:unless="${user.username == null}">
+            <label for="password" class="form-label">Senha</label>
+            <input type="text" class="form-control"  th:field="*{password}">
+        </div>
+        <div class="mb-3" >
+            <label for="fullName" class="form-label">Nome de exibição</label>
+            <input type="text" class="form-control"  th:field="*{fullName}">
+        </div>
         <div class="mb-3">
-            <label for="role" class="form-label">Regra de usuário</label>
+            <label for="roles" class="form-label">Regras</label>
             <select class="form-select" aria-label="Default select example" th:field="*{roles}">
-                <option th:selected="*{username}" value="">Clique para selecionar</option>
+                <option value="">Clique para selecionar</option>
                 <option value="ROLE_ADMIN">Administrador</option>
                 <option value="ROLE_COMUM">Usuário</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" th:text="${user.username == null ? 'Cadastrar':'Atualizar'}" class="btn btn-primary"></button>
+        <button type="button" id="passwordBtnVisibility" th:if="${user.id != null}" onclick="handlePasswordVisibility()" class="btn btn-outline-secondary">Alterar Senha </button>
         <button type="button" onclick="swal.close()" class="btn btn-secondary">Cancelar</button>
     </form>
