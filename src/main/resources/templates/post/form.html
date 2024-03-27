@@ -1,0 +1,37 @@
+<form th:action="@{/posts}" th:object="${post}" class="overflow-hidden"
+      th:method="${post.id == null} ? 'post' : 'patch'">
+    <div class="row">
+        <div class="mb-3 col-3">
+            <label for="id" class="form-label">id</label>
+            <input type="text" class="form-control"  th:field="*{id}" readonly>
+        </div>
+        <div class="mb-3 col-9">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control"  th:field="*{name}">
+        </div>
+    </div>
+    <div class="row" th:if="${post.id}">
+        <div class="mb-3 col-6">
+            <label for="publication" class="form-label">Publicação</label>
+            <input type="datetime-local" class="form-control" th:field="*{publication}" readonly>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="lastUpdate" class="form-label">Ultima Atualização</label>
+            <input type="datetime-local" class="form-control" th:field="*{lastUpdate}" readonly>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Conteudo</label>
+        <textarea class="form-control" th:field="*{content}"  rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Assuntos</label>
+        <select class="form-select js-example-basic-multiple form-select-lg mb-3" th:field="*{subjects}" aria-label="Large select example" multiple>
+            <option value="" selected>Selecione um valor</option>
+            <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="button" onclick="swal.close()" class="btn btn-secondary">Cancelar</button>
+</form>

@@ -13,7 +13,7 @@
                 <img src="/assets/imagens/logo_web_branca.png" class="img-circle elevation-2" alt="u">
             </div>
             <div class="info">
-                <a href="#" class="d-block" th:text="'Olá, ' + ${#authentication.principal.username}"></a>
+                <a href="#" class="d-block" text="Olá,  + ${#authentication.principal.username}"></a>
             </div>
         </div>
         <nav class="mt-2">
@@ -22,7 +22,7 @@
                     <a href="/home" class="nav-link">
                         <i class="nav-icon fas fa-house"></i>
                         <p>
-                            Home
+                            Inicio
                         </p>
                     </a>
                 </li>
@@ -30,7 +30,15 @@
                     <a href="/posts" class="nav-link ">
                         <i class="nav-icon fas fa-square-poll-vertical"></i>
                         <p>
-                            Posts
+                            Postagem
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/subjects" class="nav-link ">
+                        <i class="nav-icon fa-solid fa-list-check"></i>
+                        <p>
+                            Assuntos
                         </p>
                     </a>
                 </li>
@@ -38,7 +46,7 @@
                     <a href="/users" class="nav-link ">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Users
+                            Usuários
                         </p>
                     </a>
                 </li>
