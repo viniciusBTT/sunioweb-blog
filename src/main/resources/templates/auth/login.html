@@ -1,50 +1,60 @@
 <!doctype html>
-<html lang="pt-br">
-<th:replace th:replace="~{fragments/head}"></th:replace>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>SunioWeb - Blog</title>
+    <link rel="icon" type="image/x-icon" href="/assets/imagens/logo_blog.png">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/vendor/datatable/datatable.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap5-2/bootstrap.min.css" rel="stylesheet">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/vendor/adminLte/adminlte.min.css">
+</head>
 
-</style>
-<body class="sidebar-mini sidebar-collapse">
-<div class="wrapper">
 
-    <main class="content-wrapper  p-4">
-        <div class="card animation">
-            <div class="card-header d-flex justify-content-between">
-                <h1 class="h1 d-block">Login</h1>
-               </div>
-            <div th:if="${error}">
-                Invalid username and password.
-            </div>
-            <div th:if="${logout}">
-                You have been logged out.
-            </div>
-            <form th:action="@{/login}" method="post">
-                <div><label> User Name : <input type="text" name="username"/> </label></div>
-                <div><label> Password: <input type="password" name="password"/> </label></div>
-                <div><button type="submit" class="btn btn-primary"/></div>
+<body>
+<main class=" p-4">
+    <card class="card col-lg-4 col-md-8 sol-sm-10  mx-auto">
+        <div class="card-body">
+            <form  th:action="@{/login}" method="post" class="text-center"  >
+                <div class="d-flex w-100">
+                    <a href="/"  class="mx-auto">
+                        <img src="/assets/imagens/logo_blog.png" alt="Sunio Web"  height="160px">
+                    </a>
+                </div>
+
+                <h1 class="h3 mb-3 fw-normal  ">Por favor, faça login</h1>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="username" name="username" >
+                    <label for="username">Nome de usuário</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" name="password" >
+                    <label for="password">Senha</label>
+                </div>
+                <div class="alert alert-danger my-1" th:if="${param.error}" role="alert">
+                    Nome de usuário e/ou senha incorreto!
+                </div>
+                <div class="alert alert-success my-1" th:if="${param.logout}"  role="alert">
+                    Você foi deslogado!
+                </div>
+                <button class="w-100 btn  mb-5 btn-lg btn-primary" type="submit">Acessar</button>
+                <span >Copyright &copy; 2024 <a href="https://sunioweb.com.br">SunioWeb</a>.</span>
             </form>
-            </div>
         </div>
+    </card>
+</main>
 
-
-        <div id="model">
-
-        </div>
-    </main>
-    <th:replace th:replace="~{fragments/footer}"></th:replace>
-
-</div>
 <!-- BootStrap 5.2 js -->
 <script src="/assets/vendor/bootstrap5-2/bootstrap.min.js"></script>
 <!-- Sweetalert 2 -->
 <script src="/assets/vendor/sweetalert2/sweetalert2.all.js"></script>
 
-<!-- triggers to alerts -->
-<script>
-    let success = "[[${success}]]";
-    let error = "[[${error}]]";
-</script>
-<!-- triggers to DataTable, alerts e  -->
-<script src="/assets/js/globalJs.js"></script>
+
 
 <script src="https://kit.fontawesome.com/8e39ba9689.js" crossorigin="anonymous"></script>
 

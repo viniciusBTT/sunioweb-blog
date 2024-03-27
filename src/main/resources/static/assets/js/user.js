@@ -1,5 +1,5 @@
-function  handleBtnUserModal(username){
-    url =  `/users/save${username ? '/'+username : ''}`
+function  handleBtnUserModal(id){
+    url =  `/users/save${id ? '/'+id : ''}`
 
     fetch(url, {
         method: 'GET'
@@ -29,4 +29,10 @@ function  handleBtnUserModal(username){
     });
 
 
+}
+
+function handlePasswordVisibility(){
+    document.querySelector("#containerInputPassword").classList.remove("d-none");
+    document.querySelector("#passwordBtnVisibility").disabled = true;
+    document.querySelector("#password").value = "";
 }

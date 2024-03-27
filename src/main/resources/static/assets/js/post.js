@@ -9,12 +9,13 @@ function  handleBtnPostModal(id){
         return response.text();
     })
     .then(html => {
+
         Swal.fire({
             title: "Cadastro de postagem",
             html: html,
             showConfirmButton: false,
         })
-
+        triggerSelect2()
     })
     .catch(error => {
         Swal.fire({

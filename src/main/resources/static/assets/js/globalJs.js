@@ -1,4 +1,6 @@
 
+if(document.querySelector("#table"))
+{
 //Montando a data table client side
     document.addEventListener('DOMContentLoaded', function () {
         let table = new DataTable('#table', {
@@ -27,6 +29,7 @@
             }]
         });
     });
+}
 
 
 
