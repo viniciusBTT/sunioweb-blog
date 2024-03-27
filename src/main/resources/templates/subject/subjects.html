@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br">
+<th:replace th:replace="~{fragments/head}"></th:replace>
+
+<style>
+    .animation {
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: translate(0px, 100px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0px, 0px) ;
+    opacity: 1;
+  }
+}
+</style>
+<body class="sidebar-mini sidebar-collapse">
+<div class="wrapper">
+    <th:replace th:replace="~{fragments/header}"></th:replace>
+
+    <th:replace th:replace="~{fragments/sidebar}"></th:replace>
+    <main class="content-wrapper  p-4">
+        <div class="card animation">
+            <div class="card-header d-flex justify-content-between">
+                <h1 class="h1 d-block">Assuntos</h1>
+                <button type="button" class="btn btn-link ms-auto" onclick="handleBtnSubjectModal()">
+                    <i class="fa-solid fa-list-check me-1"></i>Adicionar</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped border" id="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col" class="text-center border-left">Editar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="subject: ${subjects}">
+                        <td th:text="${subject.id}" ></td>
+                        <td th:text="${subject.name}" ></td>
+                        <td class="text-center border-left">
+                            <button type="button" class="btn btn-link"
+                                    th:id="${subject.id}" onclick="handleBtnSubjectModal(this.id)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+
+                            </button>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div id="model">
+
+        </div>
+    </main>
+    <th:replace th:replace="~{fragments/footer}"></th:replace>
+
+</div>
+<!-- jQuery -->
+<script src="/assets/vendor/jquery/jquery3.6.0.min.js"></script>
+<!-- BootStrap 5.2 js -->
+<script src="/assets/vendor/bootstrap5-2/bootstrap.min.js"></script>
+<!-- Sweetalert 2 -->
+<script src="/assets/vendor/sweetalert2/sweetalert2.all.js"></script>
+<!-- Data table-->
+<script src="/assets/vendor/datatable/datatable.js"></script>
+
+<!-- triggers to alerts -->
+<script>
+    let success = "[[${success}]]";
+    let error = "[[${error}]]";
+    let sideBarActive = 3;
+</script>
+<!-- triggers to DataTable, alerts e  -->
+<script src="/assets/js/globalJs.js"></script>
+
+<script src="https://kit.fontawesome.com/8e39ba9689.js" crossorigin="anonymous"></script>
+<!-- AdminLTE App -->
+<script src="/assets/vendor/adminLte/adminlte.js"></script>
+
+<script src="/assets/js/subject.js"> </script>
+
+</body>
+</html>
