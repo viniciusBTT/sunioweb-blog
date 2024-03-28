@@ -13,3 +13,19 @@
   width: 4.5rem;
   height: calc(100vh - 75px)
 }
+
+/*Animação*/
+.animation {
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: translate(0px, 100px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0px, 0px) ;
+    opacity: 1;
+  }
+}

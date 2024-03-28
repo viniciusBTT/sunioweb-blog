@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/posts")
 public class PostController {
@@ -38,13 +40,23 @@ public class PostController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute Post post,
-                       RedirectAttributes ra )
-    {
+    public String save(@ModelAttribute Post post,RedirectAttributes ra ){
+        try{
+            System.out.println(post);
+            Date actualDate = new Date();
+            if (post.getId() == null)
+                post.setPublication(actualDate);
+            post.setLastUpdate(actualDate);
 
-        System.out.println(post);
-        ra.addAttribute("success","sucesso ao redirecionar");
+            postService.save(post);
+            System.out.println(post);
 
+
+            ra.addAttribute("success","Sucesso ao cadastrar a postagem");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            ra.addAttribute("error","Erro ao cadastrar a postagem");
+        }
         return "redirect:/posts";
     }
 }

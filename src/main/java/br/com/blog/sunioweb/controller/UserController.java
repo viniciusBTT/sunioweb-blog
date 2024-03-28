@@ -30,8 +30,7 @@ public class UserController {
 
     @GetMapping(value = {"/save/{id}","/save"})
     public  String returnUserForm(@PathVariable(required = false) Integer id,
-                                  Model model,
-                                  User user){
+                                  Model model, User user){
         if(id != null)
             user = userService.findById(id);
 
@@ -53,10 +52,12 @@ public class UserController {
                 user.setUsername(dto.username());
                 user.setFullName(dto.fullName());
                 user.getRoles().add(0, new Role(dto.roles()));
+                if(!user.getPassword().equals(dto.password()))
+                    user.setPassword(new BCryptPasswordEncoder().encode(dto.password()));
 
                 userService.save(user);
                 ra.addFlashAttribute("success","Usuário atualizado com sucesso");
-            }
+           }
           }catch (Exception e){
             System.out.println(e.getMessage());
             ra.addFlashAttribute("error","Erro ao registrar o usuário");
