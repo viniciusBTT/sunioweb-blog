@@ -1,5 +1,5 @@
 
-    <form th:action="@{/users/save}" th:object="${user}" th:method="${user.username == null} ? 'POST' : 'PATCH'">
+    <form th:action="@{/users/save}" th:object="${user}" method="post">
         <div class="mb-3 ">
             <label for="id" class="form-label">Nome</label>
             <input type="text" class="form-control"  th:field="*{id}" readonly>

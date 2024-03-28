@@ -1,5 +1,4 @@
-<form th:action="@{/posts}" th:object="${post}" class="overflow-hidden"
-      th:method="${post.id == null} ? 'post' : 'patch'">
+<form th:action="@{/posts}" th:object="${post}" class="overflow-hidden text-start" method="post">
     <div class="row">
         <div class="mb-3 col-3">
             <label for="id" class="form-label">id</label>
@@ -13,11 +12,13 @@
     <div class="row" th:if="${post.id}">
         <div class="mb-3 col-6">
             <label for="publication" class="form-label">Publicação</label>
-            <input type="datetime-local" class="form-control" th:field="*{publication}" readonly>
+            <input type="datetime-local" class="form-control" id="publication" name="publication"
+                   th:value="${#dates.format(post.publication, 'yyyy-MM-dd''T''HH:mm')}" readonly>
         </div>
         <div class="mb-3 col-6">
             <label for="lastUpdate" class="form-label">Ultima Atualização</label>
-            <input type="datetime-local" class="form-control" th:field="*{lastUpdate}" readonly>
+            <input type="datetime-local" class="form-control" id="lastUpdate" name="lastUpdate"
+                   th:value="${#dates.format(post.lastUpdate, 'yyyy-MM-dd''T''HH:mm')}" readonly>
         </div>
     </div>
     <div class="mb-3">
@@ -26,8 +27,8 @@
     </div>
     <div class="mb-3">
         <label for="content" class="form-label">Assuntos</label>
-        <select class="form-select js-example-basic-multiple form-select-lg mb-3" th:field="*{subjects}" aria-label="Large select example" multiple>
-            <option value="" selected>Selecione um valor</option>
+        <select class="form-select  form-select-lg mb-3" th:field="*{subjects}" aria-label="Large select example" multiple>
+
             <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
         </select>
     </div>
