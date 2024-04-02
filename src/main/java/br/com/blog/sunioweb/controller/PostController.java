@@ -43,20 +43,22 @@ public class PostController {
     public String save(@ModelAttribute Post post,RedirectAttributes ra ){
         try{
             System.out.println(post);
-            Date actualDate = new Date();
+            Date currentDate = new Date();
             if (post.getId() == null)
-                post.setPublication(actualDate);
-            post.setLastUpdate(actualDate);
+                post.setPublication(currentDate);
+            post.setLastUpdate(currentDate);
 
             postService.save(post);
             System.out.println(post);
-
-
             ra.addAttribute("success","Sucesso ao cadastrar a postagem");
+
+            return "redirect:/posts";
+
         }catch (Exception e){
             System.out.println(e.getMessage());
             ra.addAttribute("error","Erro ao cadastrar a postagem");
+            return "redirect:/posts";
         }
-        return "redirect:/posts";
+
     }
 }

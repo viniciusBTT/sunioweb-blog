@@ -36,6 +36,8 @@ public class Post {
     @NotNull
     private String content;
 
+    private Boolean visibility;
+
 
     @ManyToMany
     private List<Subject> subjects;

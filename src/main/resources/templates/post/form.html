@@ -12,17 +12,15 @@
     <div class="row" th:if="${post.id}">
         <div class="mb-3 col-6">
             <label for="publication" class="form-label">Publicação</label>
-            <input type="datetime-local" class="form-control" id="publication" name="publication"
-                   th:value="${#dates.format(post.publication, 'yyyy-MM-dd''T''HH:mm')}" readonly>
+            <input type="text" class="form-control" th:value="*{publication}" id="publication" readonly>
         </div>
         <div class="mb-3 col-6">
             <label for="lastUpdate" class="form-label">Ultima Atualização</label>
-            <input type="datetime-local" class="form-control" id="lastUpdate" name="lastUpdate"
-                   th:value="${#dates.format(post.lastUpdate, 'yyyy-MM-dd''T''HH:mm')}" readonly>
+            <input type="text" class="form-control" th:value="*{lastUpdate}" id="lastUpdate" readonly>
         </div>
     </div>
     <div class="mb-3">
-        <label for="content" class="form-label">Conteudo</label>
+        <label for="content" class="form-label">Conteúdo</label>
         <textarea class="form-control" th:field="*{content}"  rows="3"></textarea>
     </div>
     <div class="mb-3">
@@ -31,6 +29,10 @@
 
             <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
         </select>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" th:field="*{visibility}">
+        <label class="form-check-label" for="visibility">Visibilidade</label>
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar</button>

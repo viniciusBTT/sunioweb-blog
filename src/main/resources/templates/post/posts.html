@@ -19,7 +19,7 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Descrição</th>
+                        <th scope="col">Nome</th>
                         <th scope="col">Publicado</th>
                         <th scope="col">Ultima atualização</th>
                         <th scope="col">Assuntos</th>
@@ -29,7 +29,7 @@
                     <tbody>
                     <tr th:each="post: ${posts}">
                         <td class="align-middle" th:text="${post.id}" ></td>
-                        <td class="align-middle" th:text="${post.content}"></td>
+                        <td class="align-middle" th:text="${post.name}" ></td>
                         <td class="align-middle" th:text="${#dates.format(post.publication, 'dd/MM HH:mm')}"></td>
                         <td class="align-middle" th:text="${#dates.format(post.lastUpdate, 'dd/MM HH:mm')}"></td>
                         <td class="align-middle" >
@@ -71,23 +71,10 @@
 <script src="/assets/js/globalJs.js"></script>
 
 <script src="https://kit.fontawesome.com/8e39ba9689.js" crossorigin="anonymous"></script>
-<!-- AdminLTE App -->
+<!-- Template js -->
 <script src="/assets/vendor/adminLte/adminlte.js"></script>
 
 <script src="/assets/js/post.js"> </script>
-
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<script>
-  
-
- function triggerSelect2(){
-  $(document).ready(function() {
-      $('.js-example-basic-multiple').select2();
-  });
- }
-
-</script>
 
 </body>
 </html>

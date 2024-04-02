@@ -34,6 +34,7 @@
                 <table class="table table-striped border" id="table">
                     <thead>
                     <tr>
+                        <th scope="col">Username</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Role</th>
                         <th scope="col" class="text-center border-left">Editar</th>
@@ -41,6 +42,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="user: ${users}">
+                        <td th:text="${user.fullName}" ></td>
                         <td th:text="${user.username}" ></td>
                         <td th:switch="${user.roles[0].name}" >
                             <span th:case="ROLE_ADMIN">Administrador</span>
@@ -50,9 +52,7 @@
                             <button type="button" class="btn btn-link"
                                     th:id="${user.id}" onclick="handleBtnUserModal(this.id)">
                                 <i class="fa-solid fa-pen-to-square"></i>
-
                             </button>
-
                         </td>
                     </tr>
                     </tbody>

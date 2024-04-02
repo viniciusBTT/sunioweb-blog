@@ -23,10 +23,13 @@ if(document.querySelector("#table"))
                 }
             },
             responsive: true,
-            columnDefs: [{
-                targets: -1,
-                orderable: false
-            }]
+            columnDefs: [
+                {
+                    targets: -1,
+                    orderable: false,
+                    responsivePriority: 2
+                }
+            ]
         });
     });
 }

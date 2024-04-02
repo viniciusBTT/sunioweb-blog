@@ -15,7 +15,6 @@ function  handleBtnPostModal(id){
             html: html,
             showConfirmButton: false,
         })
-        triggerSelect2()
     })
     .catch(error => {
         Swal.fire({
