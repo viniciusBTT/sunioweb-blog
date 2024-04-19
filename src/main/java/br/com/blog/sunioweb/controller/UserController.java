@@ -38,24 +38,34 @@ public class UserController {
         return "user/form";
     }
 
+    /**
+     *
+     * @param dto dto de userPost
+     * @param ra parametro de redicionamento
+     * @return para a tela de usuarios com uma mensage de erro ou sucesso
+     *
+     * ser nao tiver id ele salva as informações do dto.
+     * Caso tenha ele prenche os dados vindo do dto no objeot user
+     */
     @PostMapping("/save")
     public String save(@ModelAttribute UserPostDTO dto, RedirectAttributes ra){
         try {
+
             if(dto.id() == null){
                 User user = new User(dto.username(), dto.password(), dto.fullName(), new Role(dto.roles()));
                 userService.save(user);
                 ra.addFlashAttribute("success","Usuário cadastrado com sucesso");
             }
            else{
-                User user = userService.findById(dto.id());
+                User savedUser = userService.findById(dto.id());
 
-                user.setUsername(dto.username());
-                user.setFullName(dto.fullName());
-                user.getRoles().add(0, new Role(dto.roles()));
-                if(!user.getPassword().equals(dto.password()))
-                    user.setPassword(new BCryptPasswordEncoder().encode(dto.password()));
+                savedUser.setUsername(dto.username());
+                savedUser.setFullName(dto.fullName());
+                savedUser.getRoles().add(0, new Role(dto.roles()));
+                if(!savedUser.getPassword().equals(dto.password()))
+                    savedUser.setPassword(new BCryptPasswordEncoder().encode(dto.password()));
 
-                userService.save(user);
+                userService.save(savedUser);
                 ra.addFlashAttribute("success","Usuário atualizado com sucesso");
            }
           }catch (Exception e){

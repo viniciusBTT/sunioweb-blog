@@ -42,6 +42,13 @@ public class Post {
     @ManyToMany
     private List<Subject> subjects;
 
+    public Post(String name, String content, List<Subject> subjects, Boolean visibility){
+        this.name = name;
+        this.content = content;
+        this.subjects.addAll(subjects);
+        this.visibility = visibility;
+    }
 
+    public Post(){}
 
 }

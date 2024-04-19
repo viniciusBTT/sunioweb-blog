@@ -42,16 +42,18 @@ public class PostController {
     @PostMapping
     public String save(@ModelAttribute Post post,RedirectAttributes ra ){
         try{
-            System.out.println(post);
             Date currentDate = new Date();
-            if (post.getId() == null)
+            if (post.getId() == null){
                 post.setPublication(currentDate);
-            post.setLastUpdate(currentDate);
-
+                post.setLastUpdate(currentDate);
+                ra.addAttribute("success","Sucesso ao cadastrar a postagem");
+            }
+            else
+            {
+                post.setLastUpdate(currentDate);
+                ra.addAttribute("success","Sucesso ao atualizar a postagem");
+            }
             postService.save(post);
-            System.out.println(post);
-            ra.addAttribute("success","Sucesso ao cadastrar a postagem");
-
             return "redirect:/posts";
 
         }catch (Exception e){

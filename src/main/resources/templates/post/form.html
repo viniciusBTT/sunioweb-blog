@@ -12,11 +12,13 @@
     <div class="row" th:if="${post.id}">
         <div class="mb-3 col-6">
             <label for="publication" class="form-label">Publicação</label>
-            <input type="text" class="form-control" th:value="*{publication}" id="publication" readonly>
+            <input type="text" class="form-control" th:value="*{#dates.format(publication, 'dd/MM HH:mm')}" readonly>
+            <input type="hidden" th:field="*{publication}"  readonly>
         </div>
         <div class="mb-3 col-6">
             <label for="lastUpdate" class="form-label">Ultima Atualização</label>
-            <input type="text" class="form-control" th:value="*{lastUpdate}" id="lastUpdate" readonly>
+            <input type="text" class="form-control" th:value="*{#dates.format(lastUpdate, 'dd/MM HH:mm')}" readonly>
+            <input type="hidden" th:field="*{lastUpdate}"  readonly>
         </div>
     </div>
     <div class="mb-3">
@@ -30,7 +32,7 @@
             <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
         </select>
     </div>
-    <div class="form-check form-switch">
+    <div class="form-switch mb-3 text-end">
         <input class="form-check-input" type="checkbox" th:field="*{visibility}">
         <label class="form-check-label" for="visibility">Visibilidade</label>
     </div>
